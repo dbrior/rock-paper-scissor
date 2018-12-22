@@ -2,6 +2,8 @@ var computerScore, playerScore;
 var over;
 setup();
 
+
+
 function computerPlay() {
     var num = Math.random() * 3;
     var move;
@@ -95,6 +97,13 @@ function game(){
             setOutput("Game complete. Tie Game!");
         }
     }
+    if(over){
+        var choiceButtons = document.getElementsByClassName("choice-button");
+        for(var i=0;i<choiceButtons.length;i++){
+            var button = choiceButtons[i];
+            button.disabled = true;
+        }
+    }
 }
 
 function reset(){
@@ -102,6 +111,11 @@ function reset(){
     computerScore = 0;
     document.getElementById("player-score").textContent = playerScore;
     document.getElementById("computer-score").textContent = computerScore;
+    var choiceButtons = document.getElementsByClassName("choice-button");
+        for(var i=0;i<choiceButtons.length;i++){
+            var button = choiceButtons[i];
+            button.disabled = false;
+        }
     resetOutput();
     over = false;
 }
@@ -126,4 +140,5 @@ function setup(){
         }
     });
 }
+
 
