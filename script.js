@@ -1,3 +1,7 @@
+var computerScore, playerScore;
+var over;
+setup();
+
 function computerPlay() {
     var num = Math.random() * 3;
     var move;
@@ -12,87 +16,114 @@ function computerPlay() {
 }
 
 function playRound(computerSelection, playerSelection){
-    var comp = computerSelection.toLowerCase();
-    var person = playerSelection.toLowerCase();
-    var result;
-    
-    if(person === "rock"){
-        if(comp === "rock"){
-            result = -1;
-        } else if(comp === "paper"){
-            result = 0;
-        } else if(comp === "scissors"){
-            result = 1;
+
+    if(!over){
+        var comp = computerSelection.toLowerCase();
+        var person = playerSelection.toLowerCase();
+        var result;
+        
+        if(person === "rock"){
+            if(comp === "rock"){
+                result = -1;
+            } else if(comp === "paper"){
+                result = 0;
+            } else if(comp === "scissors"){
+                result = 1;
+            }
+        } else if(person === "paper"){
+            if(comp === "rock"){
+                result = 1;
+            } else if(comp === "paper"){
+                result = -1;
+            } else if(comp === "scissors"){
+                result = 0;
+            }
+        } else if(person === "scissors" || person === "scissor"){
+            if(comp === "rock"){
+                result = 0;
+            } else if(comp === "paper"){
+                result = 1;
+            } else if(comp === "scissors"){
+                result = -1;
+            }
+        } else {
+            result = null;
         }
-    } else if(person === "paper"){
-        if(comp === "rock"){
-            result = 1;
-        } else if(comp === "paper"){
-            result = -1;
-        } else if(comp === "scissors"){
-            result = 0;
+        
+        
+        if(result == 1){
+            retVal = "You Win! " + playerSelection + " beats " + computerSelection.toLowerCase() + ".";
+            playerScore += 1;
+        } else if(result == 0){
+            retVal = "You Lose! " + computerSelection.toLowerCase() + " beats " + playerSelection + ".";
+            computerScore += 1;
+        } else if(result == -1){
+            retVal = "Tie! " + playerSelection + " and " + computerSelection.toLowerCase() + ".";
         }
-    } else if(person === "scissors" || person === "scissor"){
-        if(comp === "rock"){
-            result = 0;
-        } else if(comp === "paper"){
-            result = 1;
-        } else if(comp === "scissors"){
-            result = -1;
+
+        document.getElementById("output").textContent = retVal;      
+        console.log(retVal);
+        console.log("\n");
+
+        document.getElementById("player-score").textContent = playerScore;
+        document.getElementById("computer-score").textContent = computerScore;
+        game();
+        if(!over){
+            window.setTimeout(resetOutput,2000);
         }
-    } else {
-        result = null;
     }
+    window.setTimeout(game,2000);
     
-    
-    if(result == 1){
-        retVal = "You Win! " + playerSelection + " beats " + computerSelection.toLowerCase() + ".";
-    } else if(result == 0){
-        retVal = "You Lose! " + computerSelection.toLowerCase() + " beats " + playerSelection + ".";
-    } else if(result == -1){
-        retVal = "Tie! " + playerSelection + " and " + computerSelection.toLowerCase() + ".";
-    }
-            
-    console.log(retVal);
-    console.log("\n");
-    return result;
+}
+
+function resetOutput(){
+    document.getElementById("output").textContent = "Rock, Paper, or Scissors?";
+}
+
+function setOutput(input){
+    document.getElementById("output").textContent = input;
 }
 
 function game(){
-    var playerScore = 0;
-    var computerScore = 0;
-    var round = 1;
-    var retVal;
-
-    while(round <= 5){
-        console.log("Round: " + String(round) + "\n" + "    Player Score: " + String(playerScore) + " Computer Score: " + String(computerScore));
-        var playerInput = prompt("What is your move?");
-        var computerInput = computerPlay();
-        var result = playRound(computerInput,playerInput);
-
-        while(result == null){
-            playerInput = prompt("Invalid move, please try again. (Rock,Paper,Scissors)");
-            result = playRound(computerInput,playerInput);
+    if(!(playerScore < 5 && computerScore < 5)){
+        over = true;
+        if(playerScore > computerScore){
+            setOutput("Game complete. Congratulations, you win!");
+        } else if(playerScore < computerScore){
+            setOutput("Game complete. Sorry, you lose.");
+        } else {
+            setOutput("Game complete. Tie Game!");
         }
-
-        if(result == 1){
-            playerScore += 1;
-        } else if(result == 0){
-            computerScore += 1;
-        }
-        
-        round += 1;
-    }
-
-
-
-    if(playerScore > computerScore){
-        console.log("Game complete. Congratulations, you win!");
-    } else if(playerScore < computerScore){
-        console.log("Game complete. Sorry, you lose.");
-    } else {
-        console.log("Game complete. Tie Game!");
     }
 }
 
-game();
+function reset(){
+    playerScore = 0;
+    computerScore = 0;
+    document.getElementById("player-score").textContent = playerScore;
+    document.getElementById("computer-score").textContent = computerScore;
+    resetOutput();
+    over = false;
+}
+
+function setup(){
+    over = false;
+    playerScore = 0;
+    computerScore = 0;
+    document.getElementById("player-score").textContent = playerScore;
+    document.getElementById("computer-score").textContent = computerScore;
+    resetOutput();
+    var buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        if(button.id !== 'reset'){
+            button.addEventListener('click', () => {
+                game();
+                if(!over){
+                    var computerMove = computerPlay();
+                    playRound(computerMove,button.id);
+                }
+            })
+        }
+    });
+}
+

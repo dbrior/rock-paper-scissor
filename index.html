@@ -1,1 +1,25 @@
-<script src="script.js"></script>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+
+    <body>
+        <div id="top-nav"><h1 id="title">Rock, Paper, Scissors!</h1></div>
+        <div id="wrapper">
+            <div id="scores">
+                <h3 class="score">Player Score: <h3 id="player-score" class="score"></h3></h3>
+                <h3 class="score">Computer Score: <h3 id="computer-score" class="score"></h3></h3>
+            </div>
+            <div id="response">
+                <h2 id="output"></h2>
+            </div>
+            <div id="buttons">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+                <button id="reset" onclick="reset()">Reset Game</button>
+            </div>
+        </div>
+    </body>
+    <script src="script.js"></script>
+</html>
