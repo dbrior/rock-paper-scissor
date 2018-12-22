@@ -1,5 +1,6 @@
 var computerScore, playerScore;
 var over;
+var change;
 setup();
 
 
@@ -57,7 +58,7 @@ function playRound(computerSelection, playerSelection){
             retVal = "You Win! " + playerSelection + " beats " + computerSelection.toLowerCase() + ".";
             playerScore += 1;
         } else if(result == 0){
-            retVal = "You Lose! " + computerSelection.toLowerCase() + " beats " + playerSelection + ".";
+            retVal = "You Lose! " + computerSelection + " beats " + playerSelection.toLowerCase() + ".";
             computerScore += 1;
         } else if(result == -1){
             retVal = "Tie! " + playerSelection + " and " + computerSelection.toLowerCase() + ".";
@@ -71,7 +72,7 @@ function playRound(computerSelection, playerSelection){
         document.getElementById("computer-score").textContent = computerScore;
         game();
         if(!over){
-            window.setTimeout(resetOutput,2000);
+            change = window.setTimeout(resetOutput,2000);
         }
     }
     window.setTimeout(game,2000);
@@ -131,6 +132,7 @@ function setup(){
     buttons.forEach((button) => {
         if(button.id !== 'reset'){
             button.addEventListener('click', () => {
+                clearTimeout(change);
                 game();
                 if(!over){
                     var computerMove = computerPlay();

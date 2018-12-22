@@ -1,3 +1,71 @@
-.score {
-    display: inline;
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+#wrapper {
+    margin: 0;
+}
+
+
+
+#top-nav {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    border-bottom: 2px solid grey;
+    margin: 0;
+}
+#title {
+    font-family: 'Bungee Shade', Impact, Charcoal, sans-serif;
+    margin-left: 4px;
+}
+
+
+
+#scores {
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    font-family: 'Coda';
+}
+#player-wrapper {
+    margin-right: 4px;
+}
+#computer-wrapper {
+    margin-right: 4px;
+}
+#player-score {
+    margin-right: 20px;
+}
+
+
+
+
+#response {
+    display: flex;
+    justify-content: center;
+    font-family: 'Carter One';
+}
+
+
+
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+#rock-img {
+    width: 12px;
+    height: 12px;
+}
+#paper-img {
+    width: 12px;
+    height: 12px;
+}
+#scissors-img {
+    width: 12px;
+    height: 12px;
 }
