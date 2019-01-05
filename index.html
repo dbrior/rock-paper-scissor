@@ -20,11 +20,11 @@
                 <button id="Rock" class="choice-button">Rock <img id="rock-img" src="https://static.thenounproject.com/png/224425-200.png"/></button>
                 <button id="Paper" class="choice-button">Paper <img id="paper-img" src="https://static.thenounproject.com/png/1221-200.png"/></button>
                 <button id="Scissors" class="choice-button">Scissors <img id="scissors-img" src="https://img.icons8.com/metro/1600/barber-scissors.png"/></button>
-                <button id="reset" onclick="reset()">Reset Game</button>
+                <!-- <button id="reset" onclick="reset()">Reset Game</button> -->
             </div>
             <div id="stats-wrapper">
                     <div id="recent-games">
-                        <div id="recent-header"><h1 id="recent-games-title">Recent Games:</h1></div>
+                        <div id="recent-header" class="subheader"><h1 id="recent-games-title" class="subtitle">Recent Games:</h1></div>
                         <table id="games">
                             <tr>
                                 <th>Win/Loss</th>
@@ -33,10 +33,11 @@
                             </tr>
                         </table>
                     </div>
-                    <div id="specific-wins">
-                        <h2>Rock Wins: <h2 id="rock-wins"></h2></h2>
-                        <h2>Paper Wins: <h2 id="paper-wins"></h2></h2>
-                        <h2>Scissors Wins: <h2 id="scissors-wins"></h2></h2>
+                    <div id="stats">
+                        <div id="stats-header" class="subheader"><h1 id="stats-title" class="subtitle">Statistics:</h1></div>
+                        <h2 id="rock-wins">Rock Wins: 0</h2>
+                        <h2 id="paper-wins">Paper Wins: 0</h2>
+                        <h2 id="scissors-wins">Scissors Wins: 0</h2>
                     </div>
             </div>
         </div>

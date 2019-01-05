@@ -80,9 +80,9 @@ function playRound(computerSelection, playerSelection) {
         document.getElementById("player-score").textContent = playerScore;
         document.getElementById("computer-score").textContent = computerScore;
 
-        document.getElementById("rock-wins").textContent = specificWins["Rock"];
-        document.getElementById("paper-wins").textContent = specificWins["Paper"];
-        document.getElementById("scissors-wins").textContent = specificWins["Scissors"];
+        document.getElementById("rock-wins").textContent = "Rock wins: " + specificWins["Rock"];
+        document.getElementById("paper-wins").textContent = "Paper wins: " + specificWins["Paper"];
+        document.getElementById("scissors-wins").textContent = "Scissors wins: " + specificWins["Scissors"];
 
         game();
         if(!over){
@@ -102,23 +102,23 @@ function setOutput(input) {
 }
 
 function game() {
-    if(!(playerScore < 5 && computerScore < 5)){
-        over = true;
-        if(playerScore > computerScore){
-            setOutput("Game complete. Congratulations, you win!");
-        } else if(playerScore < computerScore){
-            setOutput("Game complete. Sorry, you lose.");
-        } else {
-            setOutput("Game complete. Tie Game!");
-        }
-    }
-    if(over){
-        var choiceButtons = document.getElementsByClassName("choice-button");
-        for(var i=0;i<choiceButtons.length;i++){
-            var button = choiceButtons[i];
-            button.disabled = true;
-        }
-    }
+    // if(!(playerScore < 5 && computerScore < 5)){
+    //     over = true;
+    //     if(playerScore > computerScore){
+    //         setOutput("Game complete. Congratulations, you win!");
+    //     } else if(playerScore < computerScore){
+    //         setOutput("Game complete. Sorry, you lose.");
+    //     } else {
+    //         setOutput("Game complete. Tie Game!");
+    //     }
+    // }
+    // if(over){
+    //     var choiceButtons = document.getElementsByClassName("choice-button");
+    //     for(var i=0;i<choiceButtons.length;i++){
+    //         var button = choiceButtons[i];
+    //         button.disabled = true;
+    //     }
+    // }
 }
 
 function reset() {
